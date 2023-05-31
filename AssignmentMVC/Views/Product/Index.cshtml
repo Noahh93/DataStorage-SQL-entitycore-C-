@@ -65,29 +65,77 @@
     </div>
 </section>
 
-@*<script type="text/javascript">
+<script type="text/javascript">
 
-    function Validation() {
-        txtEmail = document.getElementById("email").value
-        txtPassword = document.getElementById("password").value
-        if (txtEmail == "") {
-            document.getElementById("errorEmail").innerHTML = "email required";
+    function Validation() 
+    {
+        txtName = document.getElementById("name").value
+        txtDescription = document.getElementById("description").value
+        txtPrice = document.getElementById("price").value
+        txtCategory = document.getElementById("category").value
+        txtProductCategory = document.getElementById("productCategory").value
+        txtImage = document.getElementById("image").value
+        if (txtName == "") 
+        {
+            document.getElementById("errorName").innerHTML = "required field";
         }
-        else {
-            document.getElementById("errorEmail").innerHTML = "";
+        else 
+        {
+            document.getElementById("errorName").innerHTML = "";
         }
 
-        if (txtPassword == "") {
-            document.getElementById("errorPassword").innerHTML = "password required";
+        if (txtDescription == "") 
+        {
+            document.getElementById("errorDescription").innerHTML = "required field";
         }
-        else {
-            document.getElementById("errorPassword").innerHTML = "";
+        else 
+        {
+            document.getElementById("errorDescription").innerHTML = "";
         }
-        if (txtEmail == "" || txtPassword == "") {
+        
+        if (txtPrice = "")
+        {
+            document.getElementById("errorPrice").innerHTML = "required field";
+        }
+        else
+        {
+            document.getElementById("errorPrice").innerHTML = "";
+        }
+
+        if (txtCategory = "0")
+        {
+            document.getElementById("errorCategory").innerHTML = "required field";
+        }
+        else
+        {
+            document.getElementById("errorCategory").innerHTML = "";
+        }
+
+        if (txtProductCategory = "0") 
+        {
+            document.getElementById("errorProductCategory").innerHTML = "required field";
+        }
+        else
+        {
+            document.getElementById("errorProductCategory").innerHTML = "";
+        }
+
+        if (txtImage = "") 
+        {
+            document.getElementById("errorImage").innerHTML = "required field";
+        }
+        else
+        {
+            document.getElementById("errorImage").innerHTML = "";
+        }
+
+        if (txtName == "" || txtDescription == "" || txtPrice == "" || txtCategory = "0" || txtProductCategory = "0" || txtImage = "")
+        {
             return false;
         }
+
         return true;
     }
 
 
-</script>*@
+</script>
