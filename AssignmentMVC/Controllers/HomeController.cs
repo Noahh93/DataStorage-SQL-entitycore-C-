@@ -1,4 +1,5 @@
 ﻿using AssignmentMVC.Models;
+using AssignmentMVC.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,6 +16,13 @@ namespace AssignmentMVC.Controllers
 
         public IActionResult Index()
         {
+            CategoryRepository categoryRepository = new CategoryRepository();
+            ProductRepository productRepository = new ProductRepository();
+
+            ViewBag.ProductList = productRepository.GetAllProducts();
+            ViewBag.CategoryList = categoryRepository.GetAllCategories();
+
+
             return View();
         }
 

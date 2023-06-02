@@ -93,7 +93,7 @@
             document.getElementById("errorDescription").innerHTML = "";
         }
         
-        if (txtPrice = "")
+        if (txtPrice == "")
         {
             document.getElementById("errorPrice").innerHTML = "required field";
         }
@@ -102,7 +102,7 @@
             document.getElementById("errorPrice").innerHTML = "";
         }
 
-        if (txtCategory = "0")
+        if (txtCategory == "0")
         {
             document.getElementById("errorCategory").innerHTML = "required field";
         }
@@ -111,7 +111,7 @@
             document.getElementById("errorCategory").innerHTML = "";
         }
 
-        if (txtProductCategory = "0") 
+        if (txtProductCategory == "0") 
         {
             document.getElementById("errorProductCategory").innerHTML = "required field";
         }
@@ -120,7 +120,7 @@
             document.getElementById("errorProductCategory").innerHTML = "";
         }
 
-        if (txtImage = "") 
+        if (txtImage == "") 
         {
             document.getElementById("errorImage").innerHTML = "required field";
         }
@@ -129,7 +129,7 @@
             document.getElementById("errorImage").innerHTML = "";
         }
 
-        if (txtName == "" || txtDescription == "" || txtPrice == "" || txtCategory = "0" || txtProductCategory = "0" || txtImage = "")
+        if (txtName == "" || txtDescription == "" || txtPrice == "" || txtCategory == "0" || txtProductCategory == "0" || txtImage == "")
         {
             return false;
         }

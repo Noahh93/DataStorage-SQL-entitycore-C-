@@ -18,7 +18,6 @@ namespace AssignmentMVC.Models
         public string Description { get; set; }
 
 
-
         [ForeignKey ("Category")]
         public int CategoryID { get; set; }
         public Category Category { get; set; }
