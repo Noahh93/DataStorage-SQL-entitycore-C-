@@ -1,4 +1,5 @@
 ﻿using AssignmentMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AssignmentMVC.Repositories
 {
@@ -11,7 +12,11 @@ namespace AssignmentMVC.Repositories
         {
             _context = new ApplicationDBContext();
         }
-
+        public Product GetProductByID(int id)
+        {
+            Product product = _context.Products.Include(x => x.Category).Include(x => x.ProductCategory).Where(x => x.Id == id).FirstOrDefault();
+            return product;
+        }
         public List<Product> GetAllProducts()
         {
             List<Product> products = _context.Products.ToList();

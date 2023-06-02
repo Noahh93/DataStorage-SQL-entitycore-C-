@@ -44,8 +44,11 @@ namespace AssignmentMVC.Controllers
                 string uploadsFolder = Path.Combine(_webhostenvironment.WebRootPath, "uploads");
                 string filepath = Path.Combine(uploadsFolder, fileName);
 
-                FileStream fileStream = new FileStream(filepath, FileMode.Create);
-                productViewModel.ImagePath.CopyTo(fileStream);
+                using (FileStream fileStream = new FileStream(filepath, FileMode.Create))
+                {
+                    productViewModel.ImagePath.CopyTo(fileStream);
+                }
+
                 product.ImagePath = fileName;
 
                 bool productSaved = productRepository.SaveProduct(product);
@@ -53,6 +56,15 @@ namespace AssignmentMVC.Controllers
 
             }
             return RedirectToAction("Index", "Product");
+        }
+        public ActionResult ProductPage(int id)
+        {
+            ProductRepository productDB = new ProductRepository();
+            Product product = productDB.GetProductByID(id);
+
+
+
+            return View(product);
         }
     }
 }
