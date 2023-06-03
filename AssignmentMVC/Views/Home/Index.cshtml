@@ -48,6 +48,7 @@
 
 @{
     int loopTimes = 1;
+    int loopTimes2 = 1;
 }
     <section class="best-collection">
         <div class="container">
@@ -59,6 +60,12 @@
                 @foreach (Category category in ViewBag.CategoryList)
                 {
                     <li class="category-item"><a href="/product/productpage?@loopTimes">@category.Name</a></li>
+
+                    loopTimes++;
+                    if (loopTimes > 5)
+                    {
+                        break;
+                    }
                 }
             </ul>
             </div>
@@ -79,8 +86,8 @@
                     </a>
 
 
-                    loopTimes++;
-                    if(loopTimes > 3)
+                    loopTimes2++;
+                    if(loopTimes2 > 4)
                     {
                         break;
                     }        
