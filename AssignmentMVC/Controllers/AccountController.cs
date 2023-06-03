@@ -85,7 +85,7 @@ namespace AssignmentMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel loginVM)
         {
-            ProfileUser user = new ProfileUser();
+            User user = new User();
             user.Email = loginVM.Email;
             user.Password = loginVM.Password;
            
