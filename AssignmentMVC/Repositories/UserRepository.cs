@@ -10,17 +10,17 @@ namespace AssignmentMVC.Repositories
         {
             _context = new ApplicationDBContext();
         }
-        public List<ProfileUser> GetAllUsers()
+        public List<User> GetAllUsers()
         {
             SqlConnection sqlConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Facebook;Integrated Security=True");
             SqlCommand sqlCommand = new SqlCommand($"select CU.id, CU.FirstName, CU.LastName, CU.Email, CU.Password, CU.image, CU.CountryID, C._name from CompanyUser as CU inner join Country as C on C.ID = CU.CountryID", sqlConnection);
             sqlConnection.Open();
             SqlDataReader reader = sqlCommand.ExecuteReader();  //Executes for reading purpose
 
-            List<ProfileUser> users = new List<ProfileUser>();
+            List<User> users = new List<User>();
             while (reader.Read())
             {
-                ProfileUser user = new ProfileUser();
+                User user = new User();
                 user.Id = Convert.ToInt32(reader["id"]);
                 user.Firstname = $"{reader["FirstName"]}";
                 user.Lastname = $"{reader["Lastname"]}";
@@ -38,14 +38,14 @@ namespace AssignmentMVC.Repositories
             sqlConnection.Close();
             return users;
         }
-        public ProfileUser GetUserByEmail(string email, int id)
+        public User GetUserByEmail(string email, int id)
         {
             SqlConnection sqlConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Facebook;Integrated Security=True");
             SqlCommand sqlCommand = new SqlCommand($"select id, firstname, lastname, email, password, image from CompanyUser where email = '{email}' or id = {id}", sqlConnection);
             sqlConnection.Open();
             SqlDataReader reader = sqlCommand.ExecuteReader();
 
-            ProfileUser user = new ProfileUser();
+            User user = new User();
             while (reader.Read())
             {
                 user.Id = Convert.ToInt32(reader["id"]);
@@ -57,14 +57,14 @@ namespace AssignmentMVC.Repositories
             sqlConnection.Close();
             return user;
         }
-        public ProfileUser GetUserByEmailAndPassword(string email, string password)
+        public User GetUserByEmailAndPassword(string email, string password)
         {
             SqlConnection sqlConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Facebook;Integrated Security=True");
             SqlCommand sqlCommand = new SqlCommand($"select id, firstname, lastname, email, password from CompanyUser where email = '{email}' and password = '{password}'", sqlConnection);
             sqlConnection.Open();
             SqlDataReader reader = sqlCommand.ExecuteReader();
 
-            ProfileUser user = new ProfileUser();
+            User user = new User();
             while (reader.Read())
             {
                 user.Email = reader["email"].ToString();
@@ -73,7 +73,7 @@ namespace AssignmentMVC.Repositories
             sqlConnection.Close();
             return user;
         }
-        public bool SaveUser(AppUser user)
+        public bool SaveUser(User user)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace AssignmentMVC.Repositories
             }
 
         }
-        public List<ProfileUser> SearchUserFirstLastNameEmail(string searchWord)
+        public List<User> SearchUserFirstLastNameEmail(string searchWord)
         {
             SqlConnection sqlConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Facebook;Integrated Security=True");
             SqlCommand sqlCommand = new SqlCommand($"select Cu.id, Cu.firstname, Cu.lastname, Cu.email, Cu.password, Cu.image, Cu.countryID, c._name from CompanyUser as CU inner join Country as C on CU.CountryID = C.ID where firstname like '%{searchWord}%' or lastname like '%{searchWord}%' or email like '%{searchWord}%'", sqlConnection);
@@ -95,10 +95,10 @@ namespace AssignmentMVC.Repositories
             SqlDataReader reader = sqlCommand.ExecuteReader();
 
 
-            List<ProfileUser> users = new List<ProfileUser>();
+            List<User> users = new List<User>();
             while (reader.Read())
             {
-                ProfileUser user = new ProfileUser();
+                User user = new User();
 
                 user.Id = Convert.ToInt32(reader["id"].ToString());
                 user.Firstname = reader["firstname"].ToString();
@@ -116,7 +116,7 @@ namespace AssignmentMVC.Repositories
             sqlConnection.Close();
             return users;
         }
-        public bool UpdateUser(ProfileUser user)
+        public bool UpdateUser(User user)
         {
             SqlConnection sqlConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=Facebook;Integrated Security=True");
             SqlCommand sqlCommand = new SqlCommand($"update CompanyUser set firstname = '{user.Firstname}', lastname = '{user.Lastname}', password = '{user.Password}', image = '{user.Image}' where id = {user.Id}", sqlConnection);

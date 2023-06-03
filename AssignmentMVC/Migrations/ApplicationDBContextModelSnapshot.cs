@@ -467,13 +467,13 @@ namespace AssignmentMVC.Migrations
 
             modelBuilder.Entity("AssignmentMVC.Models.User", b =>
                 {
-                    b.HasOne("AssignmentMVC.Models.Country", "_Country")
+                    b.HasOne("AssignmentMVC.Models.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("_Country");
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

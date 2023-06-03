@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AssignmentMVC.Models
 {
-    public class ProfileUser
+    public class User
     {
         public int Id { get; set; }
         [StringLength(20)]
