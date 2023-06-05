@@ -4,6 +4,7 @@ using AssignmentMVC.Repositories;
 using AssignmentMVC.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AssignmentMVC.Controllers
 {
@@ -50,7 +51,12 @@ namespace AssignmentMVC.Controllers
 
 
                 var result = await _userManager.CreateAsync(appUser, model.Password);
-                await _userManager.AddToRoleAsync(appUser, roleName);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(appUser, roleName);
+                    return RedirectToAction("Login", "Account");
+                }
+                
 
                 //try
                 //{
@@ -85,15 +91,13 @@ namespace AssignmentMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel loginVM)
         {
-            ProfileUser user = new ProfileUser();
-            user.Email = loginVM.Email;
-            user.Password = loginVM.Password;
+
            
             var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, true, false);
             //return result.Succeeded;
             if(result.Succeeded)
             {
-                
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -101,6 +105,15 @@ namespace AssignmentMVC.Controllers
             }
             
             return View();
+        }
+        
+        [Authorize]
+        public async Task<ActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            
+
+            return RedirectToAction("Login","Account");
         }
     }
 

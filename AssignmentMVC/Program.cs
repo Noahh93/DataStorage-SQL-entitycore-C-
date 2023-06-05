@@ -23,6 +23,13 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(x =>
 })
     .AddEntityFrameworkStores<ApplicationDBContext>();
 
+builder.Services.AddAuthentication()
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "YourAppCookie";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.LoginPath = "/Account/Login";
+    });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

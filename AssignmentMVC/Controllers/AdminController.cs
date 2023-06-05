@@ -4,6 +4,7 @@ using AssignmentMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AssignmentMVC.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AssignmentMVC.Controllers
 {
@@ -17,6 +18,7 @@ namespace AssignmentMVC.Controllers
             _userManager = userManager;
 
         }
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DisplayUsers()
         {
             //var users = await _userManager.Users.ToListAsync();

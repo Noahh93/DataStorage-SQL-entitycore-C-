@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using AssignmentMVC.Models;
 using AssignmentMVC.ViewModel;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AssignmentMVC.Controllers
 {
@@ -13,6 +14,7 @@ namespace AssignmentMVC.Controllers
         {
             _webhostenvironment = webhostenvironment; //assigned here
         }
+        [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
 
@@ -24,6 +26,7 @@ namespace AssignmentMVC.Controllers
 
             return View();
         }
+        [Authorize(Roles = "admin")]
         public ActionResult SaveProduct(ProductViewModel productViewModel)
         {
             ProductRepository productRepository = new ProductRepository();

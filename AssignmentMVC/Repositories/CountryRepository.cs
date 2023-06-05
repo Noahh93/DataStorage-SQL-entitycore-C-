@@ -10,10 +10,6 @@ namespace AssignmentMVC.Repositories
         {
             _context = new ApplicationDBContext();
         }
-        public List<Country> GetCountries()
-        {
-           List<Country> countries = _context.Countries.ToList(); //Read(Fetch) from database
-           return countries;
-        }
+
     }
 }

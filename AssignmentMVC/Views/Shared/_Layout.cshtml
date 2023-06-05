@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -19,8 +22,16 @@
 
 </head>
 <body>
+    @if (User.IsInRole("admin"))
+    {
+        @Html.Partial("_HeaderAdmin")
+    }
+    else
+    {
+        @Html.Partial("_Header")
+    }
 
-    @Html.Partial("_Header")
+    
 
     @RenderBody()
 
@@ -73,3 +84,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
